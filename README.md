@@ -47,5 +47,5 @@ Python‑basierte Testautomatisierung:
 
 ## 📫 Kontakt
 
-- LinkedIn: *(https://www.linkedin.com/in/quincyjefferson/)*  
-- GitHub: *(https://github.com/quincy-J)*  
+- LinkedIn: *https://www.linkedin.com/in/quincyjefferson/*  
+- GitHub: *https://github.com/quincy-J*  
