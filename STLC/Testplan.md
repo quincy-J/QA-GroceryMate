@@ -1,4 +1,4 @@
-# 3.4 Testplan – GroceryMate
+# Testplan – GroceryMate
 
 ## 1. Produktanalyse
 
