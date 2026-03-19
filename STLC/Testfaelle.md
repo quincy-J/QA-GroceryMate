@@ -1,4 +1,4 @@
-# 3.3 Testfälle – GroceryMate
+# Testfälle – GroceryMate
 
 ---
 
