@@ -8,6 +8,7 @@ Ich kombiniere:
 - Python, SQL und erste Automatisierungserfahrung  
 - und über 15 Jahre Erfahrung in kreativen, komplexen Produktionsprozessen  
 
+Mein Ziel ist es, technische Präzision mit kreativer Problemlösung zu verbinden.  
 Dieses Portfolio zeigt meine QA‑Projekte, Testdokumentation und erste Automatisierungsarbeiten.
 
 ---
@@ -15,20 +16,22 @@ Dieses Portfolio zeigt meine QA‑Projekte, Testdokumentation und erste Automati
 ## 🔍 Inhalte dieses Portfolios
 
 ### **STLC – Software Testing Life Cycle**
-Hier dokumentiere ich alle schriftlichen Aufgaben:
-- Anforderungen analysieren  
-- Testdesign (Äquivalenzklassen, BVA, Entscheidungstabellen)  
+Dokumentation aller manuellen QA‑Aufgaben:
+- Anforderungsanalyse  
+- Testfalldesign (Äquivalenzklassen, BVA, Entscheidungstabellen)  
 - Kontrollflussdiagramme  
 - Statement & Branch Coverage  
 - Testfälle  
+- Testdurchführung  
+- Testreporting  
 - Fehlermeldungen (Issues)
 
 ### **TestAutomation**
 Python‑basierte Testautomatisierung:
 - Unit Tests  
 - erste Selenium‑Tests  
-- Testdaten  
-- kleine Hilfsfunktionen
+- Testdatenverwaltung  
+- kleine Hilfsfunktionen und Utilities  
 
 ---
 
@@ -47,5 +50,5 @@ Python‑basierte Testautomatisierung:
 
 ## 📫 Kontakt
 
-- LinkedIn: *https://www.linkedin.com/in/quincyjefferson/*  
-- GitHub: *https://github.com/quincy-J*  
+- **LinkedIn:** https://www.linkedin.com/in/quincyjefferson/  
+- **GitHub:** https://github.com/quincy-J
