@@ -6,62 +6,64 @@
 Ziel ist es, die neuen Funktionen des GroceryMate‑Webshops zu testen und sicherzustellen, dass sie korrekt, stabil und benutzerfreundlich funktionieren.
 
 ### Zielnutzergruppe
-- Alle Nutzer des Webshops
-- Käufer von Lebensmitteln
-- Nutzer, die alkoholische Produkte kaufen möchten
-- Nutzer, die Bewertungen abgeben möchten
+- Alle Nutzer des Webshops  
+- Käufer von Lebensmitteln  
+- Nutzer, die alkoholische Produkte kaufen möchten  
+- Nutzer, die zukünftig Bewertungen abgeben möchten  
 
 ### Hardware- und Software-Spezifikationen
-**Hardware:**
-- PCs, Laptops, Smartphones, Tablets
+**Hardware:**  
+- PCs, Laptops, Smartphones, Tablets  
 
-**Software:**
-- Betriebssysteme: Windows, macOS, Android, iOS
-- Browser: Chrome, Firefox, Safari, Edge
-- Abhängigkeiten: Backend‑Services, Zahlungsdienste, Session‑Management
+**Software:**  
+- Betriebssysteme: Windows, macOS, Android, iOS  
+- Browser: Chrome, Firefox, Safari, Edge  
+- Abhängigkeiten: Backend‑Services, Session‑Management  
 
 ### Produktfunktionalität
-**Bestehende Funktionen:**
-- Produktsuche
-- Kategorien
-- Warenkorb
-- Checkout
+**Bestehende Funktionen:**  
+- Produktsuche  
+- Kategorien  
+- Warenkorb  
+- Produktdetails  
+- Favoriten  
+- Checkout (nicht vollständig implementiert, kein Kaufabschluss möglich)
 
-**Neue Funktionen:**
-1. Bewertungssystem  
+**Neue Funktionen:**  
+1. Bewertungssystem (noch nicht implementiert)  
 2. Altersverifikation  
-3. Versandkostenänderung
+3. Versandkostenregelung (20 € Schwellenwert)
 
 ---
 
 ## 2. Teststrategie
 
 ### Testumfang (Scope)
-**Im Umfang:**
-- Bewertungssystem
-- Altersverifikation
-- Versandkostenlogik
-- UI‑Darstellung der neuen Elemente
+**Im Umfang:**  
+- Bewertungssystem (Testfalldesign, Durchführung = N/A)  
+- Altersverifikation  
+- Versandkostenlogik  
+- UI‑Darstellung der neuen Elemente  
 
-**Nicht im Umfang:**
-- Backend‑Datenbanktests
-- Zahlungsabwicklung
-- Admin‑Funktionen
+**Nicht im Umfang:**  
+- Kaufabschluss / Zahlungsabwicklung  
+- Backend‑Datenbanktests  
+- Admin‑Funktionen  
 
 ### Testarten
-- Funktionale Tests
-- Regressionstests
-- Usability‑Tests
-- Sicherheitstests (Basis)
-- Performance‑Smoke‑Tests
+- Funktionale Tests  
+- Regressionstests  
+- Usability‑Tests  
+- Basis‑Sicherheitstests  
+- Performance‑Smoke‑Tests  
 
 ### Risiken & Gegenmaßnahmen
 - **Live‑System** → Daten ändern sich  
   → Tests mehrfach validieren  
-- **Keine Testnutzer**  
-  → Nutzung öffentlicher Funktionen  
+- **Bewertungssystem nicht implementiert**  
+  → Testfälle erstellen, Durchführung = N/A  
 - **Keine API‑Dokumentation**  
-  → Fokus auf UI‑Tests
+  → Fokus auf UI‑Tests  
 
 ### Testlogistik
 - Testmanager – Jane Smith  
@@ -73,11 +75,10 @@ Ziel ist es, die neuen Funktionen des GroceryMate‑Webshops zu testen und siche
 ---
 
 ## 3. Testziele
-- Neue Funktionen arbeiten wie spezifiziert  
-- UI ist konsistent und verständlich  
-- Versandkosten werden korrekt berechnet  
 - Altersverifikation blockiert Minderjährige  
-- Bewertungen werden korrekt gespeichert und angezeigt  
+- Versandkosten werden korrekt berechnet (unter/über 20 €)  
+- UI ist konsistent und verständlich  
+- Bewertungssystem ist spezifiziert und testbar, sobald implementiert  
 
 ---
 
@@ -105,7 +106,7 @@ Ziel ist es, die neuen Funktionen des GroceryMate‑Webshops zu testen und siche
 ---
 
 ## 6. Testumgebung
-- DEV, TEST, ACC, PROD  
+- Live‑System (öffentliche Demo)  
 - Echte Geräte  
 - Browser: Chrome, Firefox, Safari, Edge  
 
@@ -127,8 +128,10 @@ Ziel ist es, die neuen Funktionen des GroceryMate‑Webshops zu testen und siche
 
 ## 8. Test-Deliverables
 - Testplan  
+- Anforderungen  
 - Testfälle  
 - Testdaten  
-- Testberichte  
-- Fehlerberichte  
+- Testdurchführung  
+- Testreporting  
+- Fehlerberichte (GitHub Issues)  
 - UAT‑Freigabe
