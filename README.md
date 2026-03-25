@@ -35,6 +35,22 @@ Python‑basierte Testautomatisierung:
 
 ---
 
+## 🐞 Bugs Found (GroceryMate)
+
+Während der manuellen Tests wurden mehrere Fehler im Live‑System gefunden, u. a.:
+
+- Favoritenstatus wird nach Tab‑Wechsel nicht korrekt aktualisiert  
+- Mengenfeld akzeptiert extrem große Werte (z. B. 1e+72)  
+- Kategorie‑Link „Salate“ funktioniert nicht  
+- Sortierung nach Preis nur aufsteigend möglich  
+- Sidebar‑Filter sortiert Produkte inkonsistent  
+- Add‑to‑Cart multipliziert Menge bei mehrfachen Klicks  
+- Versandkosten werden nicht angezeigt  
+
+Alle Fehler sind detailliert im Dokument **Issues.md** sowie im GitHub‑Issues‑Tab beschrieben.
+
+---
+
 ## 🛠️ Technologien & Tools
 
 - Python  
