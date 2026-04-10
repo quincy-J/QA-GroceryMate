@@ -1,95 +1,95 @@
-# Anforderungen – GroceryMate
+# Anforderungen – GroceryMate (Release Features)
 
-Dieses Dokument beschreibt die neuen Funktionen, die im nächsten Release von GroceryMate implementiert werden sollen.  
-Es enthält zunächst unklare Anforderungen, anschließend Klärungsfragen und schließlich die präzisierten, testbaren Anforderungen.
-
----
-
-# 1. Zusammenfassung der bestehenden Software
-
-GroceryMate ist ein öffentlicher Webshop, der Nutzern ermöglicht:
-
-- Produkte zu durchsuchen  
-- Kategorien zu filtern  
-- Produkte in den Warenkorb zu legen  
-- Produktdetails einzusehen  
-- Favoriten zu speichern  
-- Ohne Login zu shoppen (Checkout ist im Live‑System nicht vollständig implementiert)
-
-Die Seite ist ohne Registrierung nutzbar und basiert auf einem Live‑System.
+Dieses Dokument beschreibt die testbaren Anforderungen für die drei neuen Features der GroceryMate-Webanwendung.  
+Alle Anforderungen sind präzise, messbar und dienen als Grundlage für die Testfallerstellung.
 
 ---
 
-# 2. Neue Funktionen (für das nächste Release)
+# 1. Bewertungssystem
 
----
-
-# 2.1 Bewertungssystem für Produkte
-
-## Unklare Anforderung
-Nutzer sollen Produkte mit einem 5‑Sterne‑System bewerten und optional Feedback hinterlassen können.
-
-## Klärungsfragen
-1. Dürfen nur registrierte Nutzer bewerten?  
-2. Kann ein Nutzer ein Produkt mehrfach bewerten?  
-3. Gibt es ein Zeichenlimit für das Feedback?  
-4. Können Bewertungen bearbeitet oder gelöscht werden?  
-5. Wird der Durchschnittswert automatisch berechnet?  
-6. Wo wird die Bewertung angezeigt (Produktseite, Listenansicht)?
-
-## Detaillierte, testbare Anforderung
-- Nur **registrierte Nutzer** dürfen Produkte bewerten.  
+## 1.1 Allgemeines Verhalten
+- Nutzer kann ein Produkt mit **1 bis 5 Sternen** bewerten.
 - Eine Bewertung besteht aus:
-  - 1–5 Sternen  
-  - optionalem Text (max. **300 Zeichen**)  
-- Ein Nutzer kann ein Produkt **nur einmal** bewerten.  
-- Nutzer können ihre Bewertung **bearbeiten oder löschen**.  
-- Der Durchschnittswert wird automatisch berechnet und auf der Produktseite angezeigt.  
-- Bewertungen sind öffentlich sichtbar.
+  - Sternebewertung (**Pflichtfeld**)
+  - optionalem Text (**freiwillig**)
+- Ein Nutzer kann **pro Produkt nur eine Bewertung** abgeben.
+- Nutzer kann seine Bewertung **bearbeiten** und **löschen**.
+
+## 1.2 Bewertungstext
+- Der Bewertungstext ist **optional**.
+- Der Bewertungstext darf **maximal 500 Zeichen** lang sein.
+- Eingaben über 500 Zeichen müssen mit einer **Fehlermeldung** abgelehnt werden.
+- Leerer Text ist erlaubt.
+- Ungültige Eingaben (HTML-Tags, extrem lange Strings, SQL-Injection) müssen abgefangen werden.
+
+## 1.3 Anzeige der Bewertung
+- Nach dem Absenden wird die Bewertung **sofort** angezeigt.
+- Die Bewertung zeigt:
+  - Sterne (1–5)
+  - Bewertungstext (falls vorhanden)
+  - Datum (falls vorgesehen)
+
+## 1.4 Durchschnittswert
+- Das System berechnet den Durchschnitt aller Bewertungen automatisch.
+- Der Durchschnitt wird **in Form von Sternsymbolen** angezeigt (z. B. ⭐⭐⭐⭐☆).
+- Neben den Sternen wird die **Anzahl der Bewertungen in Klammern** angezeigt, z. B.:
+  - ⭐⭐⭐⭐☆ (3)
+- Der Durchschnitt aktualisiert sich nach:
+  - neuer Bewertung
+  - Bearbeitung
+  - Löschung
 
 ---
 
-# 2.2 Altersverifikation für alkoholische Produkte
+# 2. Altersverifikation
 
-## Unklare Anforderung
-Beim Aufrufen der Kategorie „Alkohol“ soll ein Alterscheck erscheinen.
+## 2.1 Wann erscheint das Altersmodal?
+- Das Altersverifikations-Modal erscheint **nur**, wenn der Nutzer eine **alkoholische Kategorie** öffnet.
+- Es erscheint **nicht** beim Öffnen des Shops oder anderer Kategorien.
 
-## Klärungsfragen
-1. Wie erfolgt die Verifikation (Geburtsdatum, Checkbox, Button)?  
-2. Wird die Verifikation pro Session gespeichert?  
-3. Was passiert, wenn der Nutzer nicht bestätigt?  
-4. Muss die Verifikation beim Checkout erneut erfolgen?  
-5. Wird der Zugriff auf einzelne Produkte oder ganze Kategorien blockiert?
+## 2.2 Eingabevalidierung
+- Das Geburtsdatum muss im Format **TT-MM-JJJJ** eingegeben werden.
+- Das Datum muss **realistisch** sein:
+  - Jahr ≥ 1900
+  - Jahr ≤ aktuelles Jahr
+  - Datum darf nicht in der Zukunft liegen
+- Nutzer muss **mindestens 18 Jahre alt** sein.
 
-## Detaillierte, testbare Anforderung
-- Beim ersten Aufruf der Kategorie **„Alkohol“** erscheint ein **Modal**, in dem Nutzer bestätigen müssen, dass sie **18+** sind.  
-- Ohne Bestätigung ist **kein Zugriff** auf alkoholische Produkte möglich.  
-- Die Verifikation gilt für die **aktuelle Session**.  
-- Beim Checkout wird die Altersverifikation **erneut geprüft**.  
-- Wird die Verifikation abgelehnt, bleibt der Nutzer auf der vorherigen Seite.
+## 2.3 Verhalten bei Bestätigung
+- Wenn der Nutzer bestätigt, dass er 18+ ist:
+  - erhält er Zugriff auf alkoholische Produkte
+  - das Modal erscheint **nicht erneut** während derselben Session
+
+## 2.4 Verhalten bei Ablehnung
+- Wenn der Nutzer angibt, **unter 18** zu sein:
+  - wird der Zugriff verweigert
+  - der Nutzer bleibt auf der vorherigen Seite
+  - es wird eine Fehlermeldung angezeigt
+
+## 2.5 Session-Verhalten
+- Die Altersverifikation gilt **für die gesamte Session**.
+- Das Modal erscheint erst wieder, wenn die Session endet oder gelöscht wird.
+- **Keine erneute Prüfung beim Checkout** (nicht Teil der Aufgabenstellung).
+
+---
+
+# 3. Versandkostenregelung
+
+## 3.1 Grundregel
+- Warenkorbwert < 20 € → Versandkosten = **4,99 €**
+- Warenkorbwert ≥ 20 € → Versandkosten = **0 €**
+
+## 3.2 Dynamische Aktualisierung
+- Versandkosten müssen **sofort aktualisiert** werden, wenn sich der Warenkorbwert ändert.
+- Versandkosten müssen **immer sichtbar** sein.
+
+## 3.3 Grenzwert
+- Bei **genau 20 €** fallen **0 €** Versandkosten an.
 
 ---
 
-# 2.3 Versandkostenregelung
+# 4. Warenkorb nach Kauf
 
-## Unklare Anforderung
-Versandkosten sollen ab einem bestimmten Bestellwert entfallen.
-
-## Klärungsfragen
-1. Ab welchem Betrag entfallen die Versandkosten?  
-2. Bezieht sich der Betrag auf den Wert **vor** oder **nach** Rabatten?  
-3. Wie hoch sind die Versandkosten unterhalb des Schwellenwerts?  
-4. Soll die Berechnung dynamisch im Warenkorb angezeigt werden?  
-5. Gibt es Ausnahmen (z. B. schwere Artikel)?
-
-## Detaillierte, testbare Anforderung
-- Unter **20 €** Bestellwert fallen **4,99 € Versandkosten** an.  
-- Ab **20 €** (nach Rabatten) ist der Versand **kostenlos**.  
-- Die Versandkosten werden **dynamisch im Warenkorb** angezeigt.  
-- Die Berechnung aktualisiert sich automatisch bei:
-  - Änderung der Menge  
-  - Hinzufügen/Entfernen von Produkten  
-  - Anwendung von Rabatten  
-- Versandkosten werden im Checkout erneut angezeigt.
-
----
+## 4.1 Verhalten nach Kauf
+- Nach erfolgreichem Kauf wird der Warenkorb **automatisch geleert**.
+- Der Nutzer darf keine alten Produkte im Warenkorb sehen.
