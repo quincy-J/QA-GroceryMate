@@ -1,227 +1,141 @@
 # Testfälle – GroceryMate
 
-Dieses Dokument enthält alle funktionalen Testfälle basierend auf den finalen Anforderungen.  
-Jeder Testfall ist einer Testdesign‑Technik zugeordnet.
+Dieses Dokument enthält die Testfälle für die neuen Features.  
+Format gemäß Vorgabe: Testentwurfsverfahren → Testfall → Eingabe → Erwartetes Ergebnis.
 
 ---
 
 # 1. Bewertungssystem
 
-Da das Bewertungssystem im Live‑System nicht implementiert ist, beziehen sich die Testfälle auf die spezifizierten Anforderungen.
+**Testentwurfsverfahren:** Grenzwertanalyse (BVA), Äquivalenzklassenbildung (EP), Fehlerermessen, Use-Case-Test
 
----
+### 1. BVA
+**Testfall:** Bewertung mit 1 Stern (Minimum)  
+- **Eingabe:** 1 Stern, kein Text  
+- **Erwartet:** Bewertung wird gespeichert und angezeigt.
 
-## BS‑01 – Bewertung mit 5 Sternen speichern  
-**Technik:** Funktionstest  
-**Voraussetzung:** Nutzer ist registriert und eingeloggt  
+### 2. BVA
+**Testfall:** Bewertung mit 5 Sternen (Maximum)  
+- **Eingabe:** 5 Sterne, kein Text  
+- **Erwartet:** Bewertung wird gespeichert und angezeigt.
 
-**Schritte:**  
-1. Produktseite öffnen  
-2. 5 Sterne auswählen  
-3. Bewertung speichern  
+### 3. BVA
+**Testfall:** Bewertung mit genau 500 Zeichen  
+- **Eingabe:** 5 Sterne, Text = 500 Zeichen  
+- **Erwartet:** Bewertung wird gespeichert.
 
-**Erwartet:**  
-- Bewertung wird gespeichert  
-- Bewertung erscheint auf der Produktseite  
+### 4. BVA
+**Testfall:** Bewertung mit 501 Zeichen  
+- **Eingabe:** 5 Sterne, Text = 501 Zeichen  
+- **Erwartet:** Fehlermeldung „Maximal 500 Zeichen“.
 
----
+### 5. EP
+**Testfall:** Bewertung ohne Text  
+- **Eingabe:** 4 Sterne, Text leer  
+- **Erwartet:** Bewertung wird gespeichert.
 
-## BS‑02 – Bewertung mit Text (max. 300 Zeichen)  
-**Technik:** Äquivalenzklassen (gültige Eingabe)  
-**Voraussetzung:** Nutzer ist eingeloggt  
+### 6. Error Guessing
+**Testfall:** Bewertung ohne Sterne  
+- **Eingabe:** kein Stern ausgewählt  
+- **Erwartet:** Fehlermeldung „Bitte Sterne auswählen“.
 
-**Schritte:**  
-1. Produktseite öffnen  
-2. Text mit genau 300 Zeichen eingeben  
-3. Bewertung speichern  
+### 7. Error Guessing
+**Testfall:** Bewertung mit ungültigen Zeichen  
+- **Eingabe:** 5 Sterne, Text enthält HTML („<script>…“)  
+- **Erwartet:** Fehlermeldung oder Sanitizing.
 
-**Erwartet:**  
-- Bewertung wird gespeichert  
-- Text wird korrekt angezeigt  
+### 8. Use Case
+**Testfall:** Bewertung bearbeiten  
+- **Eingabe:** vorhandene Bewertung ändern  
+- **Erwartet:** Änderung wird gespeichert und angezeigt.
 
----
+### 9. Use Case
+**Testfall:** Bewertung löschen  
+- **Eingabe:** Bewertung löschen  
+- **Erwartet:** Bewertung verschwindet, Durchschnitt aktualisiert sich.
 
-## BS‑03 – Bewertung über 300 Zeichen  
-**Technik:** Grenzwertanalyse  
-**Voraussetzung:** Nutzer ist eingeloggt  
-
-**Schritte:**  
-1. Produktseite öffnen  
-2. Text mit 301 Zeichen eingeben  
-3. Bewertung speichern  
-
-**Erwartet:**  
-- Fehlermeldung: „Feedback darf maximal 300 Zeichen enthalten.“  
-
----
-
-## BS‑04 – Bewertung bearbeiten  
-**Technik:** Use Case Testing  
-**Voraussetzung:** Nutzer hat bereits eine Bewertung abgegeben  
-
-**Schritte:**  
-1. Bewertung öffnen  
-2. Text ändern  
-3. Speichern  
-
-**Erwartet:**  
-- Bewertung wird aktualisiert  
-
----
-
-## BS‑05 – Bewertung löschen  
-**Technik:** Use Case Testing  
-**Voraussetzung:** Nutzer hat bereits eine Bewertung abgegeben  
-
-**Schritte:**  
-1. Bewertung öffnen  
-2. „Löschen“ klicken  
-
-**Erwartet:**  
-- Bewertung wird entfernt  
-- Durchschnittswert wird neu berechnet  
+### 10. Use Case
+**Testfall:** Durchschnittswert aktualisiert sich  
+- **Eingabe:** neue Bewertung abgeben  
+- **Erwartet:** Sterne + Anzahl in Klammern aktualisieren sich.
 
 ---
 
 # 2. Altersverifikation
 
----
+**Testentwurfsverfahren:** BVA, EP, Error Guessing, Use-Case-Test
 
-## AV‑01 – Altersmodal erscheint beim ersten Aufruf  
-**Technik:** Funktionstest  
+### 1. Use Case
+**Testfall:** Modal erscheint beim Öffnen der Alkohol-Kategorie  
+- **Eingabe:** Nutzer klickt auf „Alkohol“  
+- **Erwartet:** Altersmodal erscheint.
 
-**Schritte:**  
-1. Kategorie „Alkohol“ öffnen  
+### 2. EP
+**Testfall:** Nutzer ist über 18  
+- **Eingabe:** Geburtsdatum = heute – 20 Jahre  
+- **Erwartet:** Zugriff erlaubt.
 
-**Erwartet:**  
-- Altersmodal erscheint  
+### 3. BVA
+**Testfall:** Nutzer ist genau 18  
+- **Eingabe:** Geburtsdatum = heute – 18 Jahre  
+- **Erwartet:** Zugriff erlaubt.
 
----
+### 4. BVA
+**Testfall:** Nutzer ist knapp unter 18  
+- **Eingabe:** Geburtsdatum = heute – 18 Jahre + 1 Tag  
+- **Erwartet:** Zugriff verweigert.
 
-## AV‑02 – Zugriff verweigert bei „Nein“  
-**Technik:** Fehlerermessen  
+### 5. Error Guessing
+**Testfall:** Ungültiges Datumsformat  
+- **Eingabe:** „1400“, „11-11-1700“, „11-11-3000“  
+- **Erwartet:** Fehlermeldung „Ungültiges Datum“.
 
-**Schritte:**  
-1. Kategorie „Alkohol“ öffnen  
-2. „Nein, ich bin nicht 18“ klicken  
+### 6. Use Case
+**Testfall:** Ablehnung der Altersverifikation  
+- **Eingabe:** Nutzer klickt „Nein“  
+- **Erwartet:** Zugriff verweigert, Nutzer bleibt auf vorheriger Seite.
 
-**Erwartet:**  
-- Kein Zugriff  
-- Nutzer bleibt auf vorheriger Seite  
-
----
-
-## AV‑03 – Zugriff nach Bestätigung  
-**Technik:** Funktionstest  
-
-**Schritte:**  
-1. Kategorie „Alkohol“ öffnen  
-2. „Ich bin 18+“ klicken  
-
-**Erwartet:**  
-- Kategorie „Alkohol“ wird angezeigt  
-
----
-
-## AV‑04 – Session‑Speicherung  
-**Technik:** Zustandsbasierter Test  
-
-**Schritte:**  
-1. Altersmodal bestätigen  
-2. Zur Startseite wechseln  
-3. Kategorie „Alkohol“ erneut öffnen  
-
-**Erwartet:**  
-- Kein erneutes Modal innerhalb derselben Session  
-
----
-
-## AV‑05 – Erneute Prüfung beim Checkout  
-**Technik:** Use Case Testing  
-**Hinweis:** Checkout im Live‑System nicht implementiert → Testdurchführung = N/A  
-
-**Schritte:**  
-1. Alkoholisches Produkt in den Warenkorb legen  
-2. Checkout öffnen  
-
-**Erwartet:**  
-- Altersverifikation wird erneut geprüft  
+### 7. Session-Test
+**Testfall:** Modal erscheint nicht erneut  
+- **Eingabe:** Alkohol → Modal bestätigen → erneut Alkohol öffnen  
+- **Erwartet:** Modal erscheint nicht.
 
 ---
 
 # 3. Versandkosten
 
-Versandkostenregelung laut Anforderung:  
-- Unter **20 €** → **4,99 € Versandkosten**  
-- Ab **20 €** → **0 € Versandkosten**
+**Testentwurfsverfahren:** BVA, Use-Case-Test, Error Guessing
+
+### 1. BVA
+**Testfall:** Warenkorbwert = 19,99 €  
+- **Eingabe:** Produkte im Wert von 19,99 €  
+- **Erwartet:** Versandkosten = 4,99 €.
+
+### 2. BVA
+**Testfall:** Warenkorbwert = 20 €  
+- **Eingabe:** Produkte im Wert von 20 €  
+- **Erwartet:** Versandkosten = 0 €.
+
+### 3. BVA
+**Testfall:** Warenkorbwert > 20 €  
+- **Eingabe:** Produkte im Wert von 25 €  
+- **Erwartet:** Versandkosten = 0 €.
+
+### 4. Use Case
+**Testfall:** Dynamische Aktualisierung  
+- **Eingabe:** Warenkorb steigt über 20 €  
+- **Erwartet:** Versandkosten ändern sich von 4,99 € → 0 €.
+
+### 5. Error Guessing
+**Testfall:** Warenkorb fällt wieder unter 20 €  
+- **Eingabe:** Produkte entfernen  
+- **Erwartet:** Versandkosten ändern sich zurück auf 4,99 €.
 
 ---
 
-## VK‑01 – Warenkorb unter 20 €  
-**Technik:** Grenzwertanalyse  
+# 4. Warenkorb nach Kauf
 
-**Schritte:**  
-1. Produkte im Wert von 19,99 € in den Warenkorb legen  
-2. Warenkorb öffnen  
-
-**Erwartet:**  
-- Versandkosten = 4,99 €  
-
----
-
-## VK‑02 – Warenkorb genau 20 €  
-**Technik:** Grenzwertanalyse  
-
-**Schritte:**  
-1. Produkte im Wert von genau 20 € in den Warenkorb legen  
-2. Warenkorb öffnen  
-
-**Erwartet:**  
-- Versandkosten = 0 €  
-
----
-
-## VK‑03 – Warenkorb über 20 €  
-**Technik:** Äquivalenzklassen (gültige Klasse: „Versandkostenfrei“)  
-
-**Schritte:**  
-1. Produkte im Wert von über 20 € in den Warenkorb legen  
-2. Warenkorb öffnen  
-
-**Erwartet:**  
-- Versandkosten = 0 €  
-
----
-
-## VK‑04 – Dynamische Aktualisierung  
-**Technik:** Use Case Testing  
-
-**Schritte:**  
-1. Produkt hinzufügen  
-2. Menge erhöhen  
-3. Warenkorb beobachten  
-
-**Erwartet:**  
-- Versandkosten aktualisieren sich dynamisch  
-
----
-
-# 4. Automatisierbare Testfälle
-
-Diese Testfälle eignen sich besonders gut für Selenium/pytest:
-
-### ✔ Versandkosten  
-- VK‑01  
-- VK‑02  
-- VK‑03  
-- VK‑04  
-
-### ✔ Altersverifikation  
-- AV‑01  
-- AV‑03  
-
-### ✔ Bewertungssystem (sobald implementiert)  
-- BS‑01  
-- BS‑02  
-
----
+### Use Case
+**Testfall:** Warenkorb wird nach Kauf geleert  
+- **Eingabe:** Kauf abschließen  
+- **Erwartet:** Warenkorb ist leer.
