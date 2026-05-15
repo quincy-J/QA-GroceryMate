@@ -1,5 +1,5 @@
 import pytest
-from Testautomatisierung.count_word_matches import count_word_matches
+from Testautomatisierung.src.count_word_matches import count_word_matches
 
 
 # -------------------------
