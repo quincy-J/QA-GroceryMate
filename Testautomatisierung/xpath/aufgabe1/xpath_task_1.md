@@ -2,4 +2,3 @@
 
 ```xpath
 //h1[@id='mainTitle']
-```
