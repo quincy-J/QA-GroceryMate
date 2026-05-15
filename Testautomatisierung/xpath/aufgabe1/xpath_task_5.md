@@ -1,7 +1,3 @@
----
-
-## **`xpath_task_5.md`**
-```md
 # XPath Task 5 – SEO Services Description
 
 ```xpath

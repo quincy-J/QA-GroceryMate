@@ -1,7 +1,3 @@
----
-
-## **`xpath_task_14.md`**
-```md
 # XPath Task 14 – First <li> in "Our Team"
 
 ```xpath
