@@ -3,11 +3,11 @@
 ## Eingabefelder
 
 ```xpath
-//input[@id='email']
+//input[@type='email']
 ```
 
 ```xpath
-//input[@id='password']
+//input[@type='password']
 ```
 
 ## Sign In Button

@@ -1,10 +1,24 @@
+import pytest
 from selenium.webdriver.common.by import By
 
-def test_login_success(driver):
+USERS = [
+    "standard_user",
+    "locked_out_user",
+    "problem_user",
+    "performance_glitch_user",
+    "error_user",
+    "visual_user"
+]
+
+@pytest.mark.parametrize("username", USERS)
+def test_login_with_all_users(driver, username):
     driver.get("https://www.saucedemo.com/")
 
-    driver.find_element(By.ID, "user-name").send_keys("standard_user")
+    driver.find_element(By.ID, "user-name").send_keys(username)
     driver.find_element(By.ID, "password").send_keys("secret_sauce")
     driver.find_element(By.ID, "login-button").click()
 
-    assert "inventory" in driver.current_url
+    if username == "locked_out_user":
+        assert "locked out" in driver.page_source.lower()
+    else:
+        assert "inventory" in driver.current_url

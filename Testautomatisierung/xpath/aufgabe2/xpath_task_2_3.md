@@ -3,15 +3,15 @@
 ## Eingabefelder
 
 ```xpath
-//input[@id='name']
+//input[@type='name']
 ```
 
 ```xpath
-//input[@id='email']
+//input[@type='email']
 ```
 
 ```xpath
-//input[@id='password']
+//input[@type='password']
 ```
 
 ## Sign Up Button
