@@ -1,6 +1,6 @@
 # 👋 Hi, ich bin Quincy
 
-Ich bin Freelance Music Producer & Autor (Warner Chappell Music) und befinde mich aktuell in einer 14‑monatigen Software‑Engineering‑Umschulung mit Fokus auf Quality Assurance.
+Ich bin Freelance Music Producer und befinde mich aktuell in einer Software‑Engineering‑Umschulung mit Fokus auf Quality Assurance.
 
 Ich kombiniere:
 - analytisches Denken  
